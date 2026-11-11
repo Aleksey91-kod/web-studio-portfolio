@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TORQLAB — автосервис в Москве: диагностика, ремонт, ТО | Демонстрационный проект</title>
+<meta name="description" content="TORQLAB — демонстрационный сайт автосервиса: компьютерная диагностика, ремонт подвески и двигателя, ТО по регламенту. Портфолио веб-студии.">
+<meta property="og:title" content="TORQLAB — автосервис: диагностика, ремонт, ТО">
+<meta property="og:description" content="Дилерское оборудование без дилерских цен. Гарантия на работы 12 месяцев. Демонстрационный проект веб-студии.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0d0b; --bg-2:#161412; --bg-3:#1e1a16; --line:rgba(244,241,234,.12);
+  --txt:#f4f1ea; --txt-70:rgba(244,241,234,.68); --txt-40:rgba(244,241,234,.4);
+  --accent:#ff7a1a; --accent-soft:rgba(255,122,26,.14);
+  --f-display:"Oswald",system-ui,sans-serif; --f-body:"IBM Plex Sans",system-ui,sans-serif; --f-mono:"IBM Plex Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.mono{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-40)}
+.mono b{color:var(--accent);font-weight:500}
+
+/* demo ribbon */
+.demo-ribbon{position:fixed;left:-58px;bottom:38px;z-index:60;transform:rotate(45deg);background:var(--accent);color:#14100c;
+  font-family:var(--f-mono);font-weight:500;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 4rem;box-shadow:0 4px 18px rgba(0,0,0,.5)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font-family:var(--f-display);font-weight:700;font-size:1.3rem;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.logo .mark{width:26px;height:26px}
+nav.main{display:flex;gap:2rem}
+nav.main a{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--txt-70);padding:6px 0;min-height:44px;display:inline-flex;align-items:center;transition:color .2s}
+nav.main a:hover{color:var(--accent)}
+.hd .phone{font-family:var(--f-mono);font-size:.9rem;color:var(--txt);white-space:nowrap;border:1px solid var(--line);padding:8px 16px;border-radius:4px;transition:border-color .2s,color .2s;min-height:44px;display:inline-flex;align-items:center}
+.hd .phone:hover{border-color:var(--accent);color:var(--accent)}
+.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center}
+.mnav{display:none;flex-direction:column;background:var(--bg-2);border-bottom:1px solid var(--line);padding:8px clamp(20px,4vw,48px) 24px}
+.mnav a{padding:14px 0;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--line);min-height:48px;display:flex;align-items:center}
+.mnav a:last-child{border-bottom:none}
+.mnav.open{display:flex}
+
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-inner{position:relative;padding:clamp(56px,9vh,110px) 0 clamp(48px,7vh,90px)}
+h1{font-family:var(--f-display);font-weight:700;text-transform:uppercase;font-size:clamp(2.8rem,7.4vw,6rem);line-height:.98;letter-spacing:.005em}
+h1 .a{color:var(--accent)}
+.hero-sub{margin-top:26px;max-width:56ch;color:var(--txt-70);font-size:1.05rem}
+.cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;min-height:54px;padding:0 2rem;border-radius:4px;
+  font-family:var(--f-display);font-weight:600;font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1.5px solid var(--txt);transition:all .22s ease-out}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#14100c}
+.btn.solid:hover{background:var(--txt);border-color:var(--txt)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.btn:active{transform:scale(.97)}
+.hero-stats{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.hstat{padding:22px 20px 0;border-left:1px solid var(--line)}
+.hstat:first-child{border-left:none;padding-left:0}
+.hstat b{font-family:var(--f-display);font-weight:600;font-size:clamp(1.6rem,3vw,2.4rem);display:block;letter-spacing:.02em}
+.hstat span{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-40)}
+
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:13px 0;background:var(--bg-2)}
+.marquee-track{display:flex;gap:3rem;width:max-content;animation:mq 24s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--f-display);font-weight:500;font-size:.95rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-70);white-space:nowrap}
+.marquee-track span i{font-style:normal;color:var(--accent);margin-right:3rem}
+@keyframes mq{to{transform:translate3d(-50%,0,0)}}
+
+/* sections */
+section.block{padding:clamp(64px,10vh,110px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:52px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--f-display);font-weight:600;text-transform:uppercase;font-size:clamp(2rem,4.4vw,3.4rem);letter-spacing:.02em;line-height:1}
+
+/* services grid */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{background:var(--bg-2);border:1px solid var(--line);border-radius:6px;padding:30px;display:flex;flex-direction:column;min-height:230px;
+  transition:transform .22s ease-out,border-color .22s,background .22s;position:relative;overflow:hidden}
+.svc-card:hover{transform:translateY(-4px);border-color:var(--accent);background:var(--bg-3)}
+.svc-card .code{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;color:var(--txt-40);text-transform:uppercase}
+.svc-card h3{font-family:var(--f-display);font-weight:600;font-size:1.45rem;text-transform:uppercase;letter-spacing:.03em;margin:14px 0 8px}
+.svc-card p{color:var(--txt-70);font-size:.9rem;flex:1}
+.svc-card .pr{font-family:var(--f-mono);font-size:1rem;color:var(--accent);margin-top:18px}
+.svc-card::after{content:"";position:absolute;right:-26px;top:-26px;width:86px;height:86px;border-radius:50%;background:var(--accent-soft);opacity:0;transition:opacity .25s}
+.svc-card:hover::after{opacity:1}
+
+/* symptom selector */
+.sym-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.sym .lead{color:var(--txt-70);margin-top:16px;max-width:48ch}
+.sym-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.sym-chip{min-height:48px;padding:0 1.3rem;border-radius:999px;border:1.5px solid var(--line);font-size:.9rem;transition:all .2s;background:var(--bg-2)}
+.sym-chip:hover{border-color:var(--txt)}
+.sym-chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14100c;font-weight:600}
+.sym-out{background:var(--bg-2);border:1px solid var(--line);border-radius:6px;padding:36px;min-height:300px}
+.sym-out .verdict{font-family:var(--f-display);font-weight:600;font-size:1.5rem;text-transform:uppercase;letter-spacing:.02em;margin:14px 0 10px}
+.sym-out .desc{color:var(--txt-70);font-size:.94rem}
+.sym-out .price{font-family:var(--f-mono);font-size:1.15rem;color:var(--accent);margin:22px 0}
+.sym-out .btn{width:100%}
+.sym-out .idle{color:var(--txt-40);font-style:italic;font-size:.95rem}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-40);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+
+/* process */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.proc{padding:32px 26px 38px;border-right:1px solid var(--line);background:var(--bg-2);transition:background .25s}
+.proc:last-child{border-right:none}
+.proc:hover{background:var(--bg-3)}
+.proc .n{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;color:var(--accent)}
+.proc h3{font-family:var(--f-display);font-weight:600;font-size:1.25rem;text-transform:uppercase;letter-spacing:.03em;margin:16px 0 10px}
+.proc p{color:var(--txt-70);font-size:.9rem}
+
+/* band */
+.band{background:var(--accent);color:#14100c}
+.band .wrap{padding-top:clamp(56px,8vh,88px);padding-bottom:clamp(56px,8vh,88px);display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+.band h2{font-family:var(--f-display);font-weight:700;text-transform:uppercase;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1}
+.band p{margin-top:18px;color:rgba(20,16,12,.75);font-weight:500;max-width:48ch}
+.band .nums{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(20,16,12,.25);border:1px solid rgba(20,16,12,.25);border-radius:6px;overflow:hidden}
+.bnum{background:var(--accent);padding:26px}
+.bnum b{font-family:var(--f-display);font-weight:700;font-size:2rem;display:block}
+.bnum span{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(20,16,12,.7)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:52px 0 40px}
+.ft{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.ft-meta{font-family:var(--f-mono);font-size:.74rem;color:var(--txt-40);letter-spacing:.08em;line-height:2.1;text-transform:uppercase}
+.demo-note{margin-top:32px;padding-top:20px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--txt-40);max-width:74ch}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px)}
+.modal-card{position:relative;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;max-width:460px;width:100%;padding:40px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.modal-card h3{font-family:var(--f-display);font-weight:600;font-size:1.5rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px}
+.modal-card p{color:var(--txt-70);font-size:.92rem;margin-bottom:24px}
+.modal-card input{width:100%;min-height:52px;border:1px solid var(--line);border-radius:4px;padding:0 16px;font:inherit;background:var(--bg);color:var(--txt);margin-bottom:12px;transition:border-color .2s}
+.modal-card input:focus{border-color:var(--accent);outline:none}
+.modal-x{position:absolute;top:14px;right:14px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:4px;transition:background .2s}
+.modal-x:hover{background:var(--bg-3)}
+.form-ok{display:none;text-align:center;padding:24px 0}
+.form-ok b{font-family:var(--f-display);font-size:1.4rem;display:block;margin-bottom:10px;text-transform:uppercase}
+
+@media (max-width:1020px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .sym-grid,.band .wrap{grid-template-columns:1fr;gap:40px}
+  .proc-grid{grid-template-columns:repeat(2,1fr)}
+  .proc:nth-child(2){border-right:none}
+  .proc:nth-child(1),.proc:nth-child(2){border-bottom:1px solid var(--line)}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:24px 0}
+  .hstat:nth-child(3){border-left:none;padding-left:0}
+}
+@media (max-width:760px){
+  nav.main,.hd .phone{display:none}
+  .burger{display:flex}
+  .svc-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr}
+  .proc{border-right:none;border-bottom:1px solid var(--line)}
+  .proc:last-child{border-bottom:none}
+  .demo-ribbon{left:-64px;bottom:26px;font-size:.56rem}
+  .band .nums{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .marquee-track{animation:none;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">Демонстрационный проект</div>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="TORQLAB — на главную">
+      <svg class="mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <circle cx="13" cy="13" r="11" stroke="#ff7a1a" stroke-width="2.4"/>
+        <path d="M13 5v8l6 4" stroke="#f4f1ea" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      TORQ<span style="color:var(--accent)">LAB</span>
+    </a>
+    <nav class="main" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#symptoms">Диагностика</a>
+      <a href="#process">Процесс</a>
+    </nav>
+    <a class="phone" href="tel:+74950000000">+7 495 000-00-00</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Мобильная навигация">
+    <a href="#services">Услуги</a>
+    <a href="#symptoms">Диагностика</a>
+    <a href="#process">Процесс</a>
+    <a href="tel:+74950000000">+7 495 000-00-00</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 700">
+        <defs>
+          <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+            <path d="M72 0H0v72" fill="none" stroke="rgba(244,241,234,.05)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="1440" height="700" fill="url(#grid)"/>
+        <circle cx="1180" cy="140" r="260" fill="none" stroke="rgba(255,122,26,.14)" stroke-width="1.4"/>
+        <circle cx="1180" cy="140" r="180" fill="none" stroke="rgba(255,122,26,.2)" stroke-width="1.4" stroke-dasharray="4 10"/>
+        <circle cx="220" cy="600" r="180" fill="none" stroke="rgba(244,241,234,.07)" stroke-width="1.4"/>
+      </svg>
+    </div>
+    <div class="wrap hero-inner">
+      <p class="mono" style="margin-bottom:22px">Автосервис полного цикла · Москва, ЮВАО · <b>с 2012 года</b></p>
+      <h1>Чиним так,<br>чтобы вы <span class="a">забыли</span><br>дорогу к нам</h1>
+      <p class="hero-sub">Дилерское диагностическое оборудование без дилерских цен. Фотофиксация каждого этапа, запчасти на выбор — оригинал или качественный аналог, гарантия на работы 12 месяцев.</p>
+      <div class="cta-row">
+        <a class="btn solid" href="#symptoms">Что с машиной?</a>
+        <button class="btn ghost" id="openModal">Записаться на сервис</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>18 000+</b><span>машин обслужено</span></div>
+        <div class="hstat"><b>12 мес</b><span>гарантия на работы</span></div>
+        <div class="hstat"><b>45 мин</b><span>экспресс-диагностика</span></div>
+        <div class="hstat"><b>4,9</b><span>рейтинг на картах</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="mq">
+      <span><i>·</i>Компьютерная диагностика</span>
+      <span><i>·</i>Ремонт подвески</span>
+      <span><i>·</i>ТО по регламенту</span>
+      <span><i>·</i>Двигатели и КПП</span>
+      <span><i>·</i>Шиномонтаж 24/7</span>
+      <span><i>·</i>Запчасти в наличии</span>
+    </div>
+  </div>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Услуги и цены</h2>
+        <p class="mono">Прайс <b>2026</b> · работа + запчасти</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <span class="code">SRV-01</span>
+          <h3>Компьютерная диагностика</h3>
+          <p>Все электронные блоки, адаптации, отчёт с расшифровкой ошибок и рекомендациями.</p>
+          <span class="pr">от 1 500 ₽</span>
+        </div>
+        <div class="svc-card">
+          <span class="code">SRV-02</span>
+          <h3>Ремонт подвески</h3>
+          <p>Стойки, рычаги, сайлентблоки. Диагностика на люке — бесплатно при ремонте.</p>
+          <span class="pr">от 3 500 ₽</span>
+        </div>
+        <div class="svc-card">
+          <span class="code">SRV-03</span>
+          <h3>ТО по регламенту</h3>
+          <p>Масло, фильтры, свечи по сервисной книжке. Отметка в истории обслуживания.</p>
+          <span class="pr">от 6 900 ₽</span>
+        </div>
+        <div class="svc-card">
+          <span class="code">SRV-04</span>
+          <h3>Тормозная система</h3>
+          <p>Колодки, диски, прокачка. Замер остаточной толщины до и после — в отчёте.</p>
+          <span class="pr">от 2 800 ₽</span>
+        </div>
+        <div class="svc-card">
+          <span class="code">SRV-05</span>
+          <h3>Двигатель и КПП</h3>
+          <p>От замены цепи до капремонта. Дефектовка с фото, согласование до разборки.</p>
+          <span class="pr">от 9 000 ₽</span>
+        </div>
+        <div class="svc-card">
+          <span class="code">SRV-06</span>
+          <h3>Шиномонтаж</h3>
+          <p>Сезонная переобувка, балансировка, ремонт проколов. Работаем круглосуточно.</p>
+          <span class="pr">от 2 400 ₽</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block sym" id="symptoms" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Что беспокоит?</h2>
+        <p class="mono">Подбор услуги <b>по симптомам</b></p>
+      </div>
+      <div class="sym-grid">
+        <div>
+          <p class="lead">Отметьте симптомы — подскажем вероятную причину и ориентир по бюджету. Это не замена диагностики, но поможет понять порядок цен до визита.</p>
+          <div class="sym-chips" id="chips" role="group" aria-label="Симптомы">
+            <button class="sym-chip" data-w="susp" aria-pressed="false">Стук на неровностях</button>
+            <button class="sym-chip" data-w="steer" aria-pressed="false">Вибрация руля</button>
+            <button class="sym-chip" data-w="check" aria-pressed="false">Горит Check Engine</button>
+            <button class="sym-chip" data-w="brake" aria-pressed="false">Скрип при торможении</button>
+            <button class="sym-chip" data-w="start" aria-pressed="false">Плохо заводится</button>
+            <button class="sym-chip" data-w="oil" aria-pressed="false">Жрёт масло</button>
+            <button class="sym-chip" data-w="pull" aria-pressed="false">Тянет в сторону</button>
+            <button class="sym-chip" data-w="noise" aria-pressed="false">Гул на скорости</button>
+          </div>
+        </div>
+        <div class="sym-out" id="symOut" aria-live="polite">
+          <p class="mono">Результат подбора</p>
+          <p class="verdict" id="vTitle">Пока ничего не выбрано</p>
+          <p class="desc" id="vDesc">Отметьте один или несколько симптомов слева — покажем, куда смотреть в первую очередь.</p>
+          <div class="tag-list" id="vTags"></div>
+          <p class="price" id="vPrice"></p>
+          <button class="btn solid" id="vBook" style="display:none">Записаться на диагностику</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Как проходит визит</h2>
+        <p class="mono">Прозрачно <b>на каждом шаге</b></p>
+      </div>
+      <div class="proc-grid">
+        <div class="proc">
+          <span class="n">ШАГ 01</span>
+          <h3>Приёмка</h3>
+          <p>Фиксируем пробег, комплектацию и повреждения кузова. Вы получаете акт приёмки на руки.</p>
+        </div>
+        <div class="proc">
+          <span class="n">ШАГ 02</span>
+          <h3>Диагностика</h3>
+          <p>Составляем дефектную ведомость с фото. Согласовываем работы и запчасти до начала ремонта.</p>
+        </div>
+        <div class="proc">
+          <span class="n">ШАГ 03</span>
+          <h3>Ремонт</h3>
+          <p>Фотоотчёт в мессенджер на каждом этапе. Старые запчасти возвращаем или утилизируем при вас.</p>
+        </div>
+        <div class="proc">
+          <span class="n">ШАГ 04</span>
+          <h3>Выдача</h3>
+          <p>Тест-драйв с мастером, гарантийный талон на 12 месяцев и рекомендации по дальнейшему ТО.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div>
+        <h2>Не чиним то,<br>что не сломано</h2>
+        <p>Если диагностика покажет, что ремонт не нужен, — так и скажем. Вы платите только за подтверждённые работы.</p>
+      </div>
+      <div class="nums">
+        <div class="bnum"><b>0 ₽</b><span>диагностика при ремонте у нас</span></div>
+        <div class="bnum"><b>−30%</b><span>к ценам официального дилера</span></div>
+        <div class="bnum"><b>97%</b><span>клиентов возвращаются сами</span></div>
+        <div class="bnum"><b>24/7</b><span>эвакуатор для своих</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <a class="logo" href="#top" aria-label="TORQLAB — наверх">
+          <svg class="mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+            <circle cx="13" cy="13" r="11" stroke="#ff7a1a" stroke-width="2.4"/>
+            <path d="M13 5v8l6 4" stroke="#f4f1ea" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+          TORQ<span style="color:var(--accent)">LAB</span>
+        </a>
+        <p class="ft-meta" style="margin-top:12px">Москва, Проектируемый пр-д, 14<br>Пн–Сб 9:00—21:00 · Шиномонтаж 24/7</p>
+      </div>
+      <div class="ft-meta">
+        +7 495 000-00-00<br>service@torqlab.example<br>Бокс 7 · Пост 12
+      </div>
+    </div>
+    <p class="demo-note">Демонстрационный проект веб-студии. Название, контакты, статистика и цены вымышлены и используются только для показа дизайна и вёрстки. Форма записи не собирает и не передаёт персональные данные. Подбор по симптомам носит ознакомительный характер.</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card">
+    <button class="modal-x" data-close aria-label="Закрыть окно">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div id="formWrap">
+      <h3 id="modalTitle">Запись на сервис</h3>
+      <p>Оставьте телефон и марку автомобиля — мастер-приёмщик перезвонит и подберёт удобное время.</p>
+      <form id="leadForm" novalidate>
+        <input type="text" name="car" placeholder="Марка и модель (например, Kia Rio)" autocomplete="off">
+        <input type="tel" name="phone" placeholder="+7 ___ ___-__-__" autocomplete="tel" required>
+        <button class="btn solid" type="submit" style="width:100%">Записаться</button>
+        <p style="font-size:.8rem;color:var(--txt-40);margin:12px 0 0">Демо-режим: заявка не отправляется на сервер.</p>
+      </form>
+    </div>
+    <div class="form-ok" id="formOk">
+      <b>Заявка принята</b>
+      <p style="color:var(--txt-70)">В демо-режиме заявка никуда не уходит — на реальном сайте здесь была бы отправка в CRM автосервиса.</p>
+      <button class="btn ghost" data-close style="margin-top:18px">Понятно</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
+  burger.addEventListener('click',function(){
+    var open=mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  mnav.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');}
+  });
+  var mq=document.getElementById('mq');mq.innerHTML+=mq.innerHTML;
+  // symptom selector
+  var DB={
+    susp:{t:'Подвеска',d:'Стук на неровностях чаще всего дают стойки стабилизатора, шаровые или сайлентблоки. Начинаем с бесплатной диагностики на люке.',p:'Ремонт: от 3 500 ₽'},
+    steer:{t:'Колёса / рулевое',d:'Вибрация руля на скорости — признак разбалансировки колёс или износа рулевых наконечников.',p:'Балансировка: от 1 600 ₽'},
+    check:{t:'Электроника двигателя',d:'Check Engine требует компьютерной диагностики: считаем ошибки всех блоков и дадим расшифровку без «разводов».',p:'Диагностика: от 1 500 ₽'},
+    brake:{t:'Тормозная система',d:'Скрип и свист при торможении — износ колодок или дисков. Замерим остаточную толщину и покажем фото.',p:'Замена колодок: от 2 800 ₽'},
+    start:{t:'Система пуска',d:'Плохой запуск — аккумулятор, свечи или топливная система. Проверим по цепочке, от простого к сложному.',p:'Диагностика: от 900 ₽'},
+    oil:{t:'Двигатель',d:'Повышенный расход масла — признак залегания колец или износа колпачков. Сделаем замер компрессии.',p:'Замер компрессии: от 1 200 ₽'},
+    pull:{t:'Сход-развал',d:'Машину тянет в сторону — сбиты углы установки колёс или неравномерный износ резины.',p:'Сход-развал 3D: от 2 900 ₽'},
+    noise:{t:'Подшипники / резина',d:'Гул, растущий со скоростью, обычно даёт ступичный подшипник или изношенная резина.',p:'Замена подшипника: от 3 200 ₽'}
+  };
+  var chips=document.getElementById('chips'),
+      vTitle=document.getElementById('vTitle'),vDesc=document.getElementById('vDesc'),
+      vPrice=document.getElementById('vPrice'),vTags=document.getElementById('vTags'),vBook=document.getElementById('vBook');
+  chips.addEventListener('click',function(e){
+    var c=e.target.closest('.sym-chip');if(!c)return;
+    c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');
+    render();
+  });
+  function render(){
+    var sel=[];
+    chips.querySelectorAll('.sym-chip').forEach(function(c){
+      if(c.getAttribute('aria-pressed')==='true')sel.push(DB[c.dataset.w]);
+    });
+    vTags.innerHTML='';
+    if(!sel.length){
+      vTitle.textContent='Пока ничего не выбрано';
+      vDesc.textContent='Отметьте один или несколько симптомов слева — покажем, куда смотреть в первую очередь.';
+      vPrice.textContent='';vBook.style.display='none';
+      return;
+    }
+    vTitle.textContent=sel.length>1?('Проверим '+sel.length+' направления'):sel[0].t;
+    vDesc.textContent=sel.map(function(s){return s.d;}).join(' ');
+    vPrice.textContent=sel.map(function(s){return s.p;}).join(' · ');
+    sel.forEach(function(s){
+      var tag=document.createElement('span');tag.className='tag';tag.textContent=s.t;vTags.appendChild(tag);
+    });
+    vBook.style.display='inline-flex';
+  }
+  // modal
+  var modal=document.getElementById('modal'),formWrap=document.getElementById('formWrap'),
+      formOk=document.getElementById('formOk'),lastFocus=null;
+  function openModal(){lastFocus=document.activeElement;modal.classList.add('open');
+    document.body.style.overflow='hidden';
+    var inp=modal.querySelector('input');if(inp)inp.focus();}
+  function closeModal(){modal.classList.remove('open');document.body.style.overflow='';
+    formWrap.style.display='';formOk.style.display='none';
+    if(lastFocus)lastFocus.focus();}
+  document.getElementById('openModal').addEventListener('click',openModal);
+  vBook.addEventListener('click',openModal);
+  modal.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',closeModal);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+  document.getElementById('leadForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var phone=this.phone.value.replace(/\D/g,'');
+    if(phone.length<10){this.phone.style.borderColor='#ff5252';this.phone.focus();return;}
+    this.phone.style.borderColor='';
+    formWrap.style.display='none';formOk.style.display='block';
+    formOk.querySelector('button').focus();
+  });
+})();
+</script>
+</body>
+</html>

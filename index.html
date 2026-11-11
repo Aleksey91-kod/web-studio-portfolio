@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио веб-студии — демонстрационные проекты</title>
+<meta name="description" content="Демонстрационные проекты веб-студии: лендинг для ремонта квартир, сайт салона красоты, сайт автосервиса. Адаптивная вёрстка, современный дизайн.">
+<meta property="og:title" content="Портфолио веб-студии — демонстрационные проекты">
+<meta property="og:description" content="Три демонстрационных сайта: ремонт квартир, салон красоты, автосервис. Откройте каждый проект вживую.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fcfcf8; --ink:#2a160d; --ink-70:rgba(42,22,13,.7); --ink-45:rgba(42,22,13,.45);
+  --line:rgba(42,22,13,.16); --accent:#8a5a2b;
+  --f-display:"Playfair Display",Georgia,serif; --f-body:"Manrope",system-ui,sans-serif; --f-mono:"IBM Plex Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.mono{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-45)}
+.mono b{color:var(--accent);font-weight:500}
+.demo-ribbon{position:fixed;left:-58px;bottom:38px;z-index:60;transform:rotate(45deg);background:var(--accent);color:#fcfcf8;
+  font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 4rem;box-shadow:0 4px 18px rgba(42,22,13,.28)}
+header{border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:72px}
+.hd .logo{font-family:var(--f-display);font-weight:700;font-size:1.25rem}
+.hero{padding:clamp(56px,9vh,110px) 0}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(2.4rem,5.6vw,4.2rem);line-height:1.06;letter-spacing:-.015em}
+h1 em{font-style:italic;color:var(--accent)}
+.hero p{margin-top:22px;max-width:54ch;color:var(--ink-70);font-size:1.06rem}
+.projects{padding-bottom:clamp(64px,9vh,100px)}
+.proj{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);align-items:center;padding:clamp(40px,6vh,72px) 0;border-top:1px solid var(--line)}
+.proj:nth-child(even){direction:rtl}
+.proj>*{direction:ltr}
+.proj .shot{border-radius:8px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 50px rgba(42,22,13,.12);transition:transform .3s ease-out,box-shadow .3s ease-out;display:block;background:#fff}
+.proj .shot:hover{transform:translateY(-4px);box-shadow:0 26px 64px rgba(42,22,13,.18)}
+.proj .shot svg{width:100%;height:auto;display:block}
+.proj .num{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;color:var(--accent)}
+.proj h2{font-family:var(--f-display);font-weight:600;font-size:clamp(1.7rem,3.2vw,2.5rem);margin:12px 0 6px}
+.proj .field{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);margin-bottom:16px}
+.proj .desc{color:var(--ink-70);max-width:46ch}
+.proj .tags{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
+.proj .tag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-45);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.btn{display:inline-flex;align-items:center;gap:.6rem;min-height:50px;padding:0 1.8rem;border-radius:999px;font-weight:600;font-size:.92rem;
+  border:1.5px solid var(--ink);transition:all .25s cubic-bezier(.4,0,.2,1)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent)}
+.btn:active{transform:scale(.97)}
+footer{border-top:1px solid var(--line);padding:40px 0}
+.ft{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.demo-note{font-size:.82rem;color:var(--ink-45);max-width:72ch;margin-top:18px}
+@media (max-width:900px){
+  .proj{grid-template-columns:1fr;direction:ltr}
+  .proj:nth-child(even){direction:ltr}
+  .demo-ribbon{left:-64px;bottom:26px;font-size:.56rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">Демонстрационные проекты</div>
+
+<header>
+  <div class="wrap hd">
+    <span class="logo">WEB·STUDIO</span>
+    <span class="mono">Портфолио <b>2026</b></span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="mono" style="margin-bottom:20px">Три направления · <b>три подхода к дизайну</b></p>
+      <h1>Сайты, которые продают<br>ещё до <em>звонка</em></h1>
+      <p>Демонстрационные проекты студии: каждый — с собственной дизайн-системой, адаптивной вёрсткой и рабочими интерактивными сценариями. Откройте любой проект и проверьте на смартфоне.</p>
+    </div>
+  </section>
+
+  <section class="projects">
+    <div class="wrap">
+
+      <article class="proj">
+        <a class="shot" href="remont/" aria-label="Открыть демо ATELIERDOM">
+          <svg viewBox="0 0 800 500" role="img" aria-label="Превью сайта ремонта квартир">
+            <rect width="800" height="500" fill="#fcfcf8"/>
+            <rect x="0" y="0" width="800" height="44" fill="#f6f3ec"/>
+            <rect x="40" y="16" width="120" height="12" rx="6" fill="#2a160d" opacity=".8"/>
+            <rect x="620" y="16" width="140" height="12" rx="6" fill="#2a160d" opacity=".25"/>
+            <rect x="40" y="90" width="380" height="34" rx="4" fill="#2a160d"/>
+            <rect x="40" y="136" width="300" height="34" rx="4" fill="#2a160d"/>
+            <rect x="40" y="196" width="240" height="16" rx="8" fill="#2a160d" opacity=".3"/>
+            <rect x="40" y="240" width="150" height="36" rx="18" fill="#8a5a2b"/>
+            <rect x="204" y="240" width="130" height="36" rx="18" fill="none" stroke="#2a160d" stroke-width="2"/>
+            <rect x="460" y="90" width="300" height="200" rx="6" fill="#e8dfd0"/>
+            <rect x="480" y="150" width="120" height="140" rx="4" fill="#b39f7d"/>
+            <rect x="620" y="150" width="120" height="80" rx="4" fill="#8a5a2b" opacity=".8"/>
+            <rect x="0" y="330" width="800" height="1" fill="#2a160d" opacity=".15"/>
+            <rect x="40" y="366" width="220" height="18" rx="4" fill="#2a160d" opacity=".7"/>
+            <rect x="40" y="396" width="330" height="10" rx="5" fill="#2a160d" opacity=".2"/>
+            <rect x="40" y="416" width="300" height="10" rx="5" fill="#2a160d" opacity=".2"/>
+            <rect x="480" y="366" width="280" height="80" rx="6" fill="#2a160d"/>
+          </svg>
+        </a>
+        <div>
+          <p class="num">ПРОЕКТ 01</p>
+          <h2>ATELIERDOM</h2>
+          <p class="field">Ремонт квартир · B2C-лендинг</p>
+          <p class="desc">Тёплая editorial-подача для студии ремонта: живой калькулятор сметы, этапы работ, гарантийный блок и портфолио объектов в асимметричной сетке.</p>
+          <div class="tags"><span class="tag">Калькулятор сметы</span><span class="tag">Адаптив 375–1440</span><span class="tag">SEO + Open Graph</span></div>
+          <a class="btn solid" href="remont/">Открыть демо →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <a class="shot" href="beauty/" aria-label="Открыть демо ÉLAN STUDIO">
+          <svg viewBox="0 0 800 500" role="img" aria-label="Превью сайта салона красоты">
+            <rect width="800" height="500" fill="#faf8f5"/>
+            <rect x="0" y="0" width="800" height="44" fill="#f3efe9"/>
+            <rect x="330" y="16" width="140" height="12" rx="6" fill="#211a15" opacity=".7"/>
+            <rect x="40" y="90" width="300" height="30" rx="4" fill="#211a15"/>
+            <rect x="40" y="130" width="230" height="30" rx="4" fill="#7d5a42"/>
+            <rect x="40" y="188" width="240" height="14" rx="7" fill="#211a15" opacity=".25"/>
+            <rect x="40" y="230" width="170" height="34" rx="17" fill="#211a15"/>
+            <rect x="420" y="80" width="150" height="210" rx="3" fill="#e9dfd2"/>
+            <circle cx="495" cy="160" r="42" fill="#a47e63" opacity=".55"/>
+            <rect x="590" y="110" width="150" height="210" rx="3" fill="#ded1c2"/>
+            <circle cx="665" cy="190" r="42" fill="#7d5a42" opacity=".5"/>
+            <rect x="0" y="360" width="800" height="1" fill="#211a15" opacity=".14"/>
+            <rect x="40" y="396" width="180" height="16" rx="4" fill="#211a15" opacity=".7"/>
+            <rect x="40" y="424" width="260" height="10" rx="5" fill="#211a15" opacity=".2"/>
+            <rect x="560" y="396" width="200" height="60" rx="3" fill="#211a15"/>
+          </svg>
+        </a>
+        <div>
+          <p class="num">ПРОЕКТ 02</p>
+          <h2>ÉLAN STUDIO</h2>
+          <p class="field">Салон красоты · сайт с онлайн-записью</p>
+          <p class="desc">Галерейная сдержанность и воздух: фильтруемый прайс, портреты мастеров и трёхшаговый мастер онлайн-записи с выбором услуги и специалиста.</p>
+          <div class="tags"><span class="tag">Онлайн-запись</span><span class="tag">Фильтр услуг</span><span class="tag">Адаптив 375–1440</span></div>
+          <a class="btn solid" href="beauty/">Открыть демо →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <a class="shot" href="auto/" aria-label="Открыть демо TORQLAB">
+          <svg viewBox="0 0 800 500" role="img" aria-label="Превью сайта автосервиса">
+            <rect width="800" height="500" fill="#0e0d0b"/>
+            <rect x="0" y="0" width="800" height="44" fill="#161412"/>
+            <rect x="40" y="16" width="110" height="12" rx="6" fill="#f4f1ea" opacity=".85"/>
+            <rect x="640" y="14" width="120" height="16" rx="4" fill="none" stroke="#ff7a1a" stroke-width="1.5"/>
+            <rect x="40" y="90" width="360" height="36" rx="4" fill="#f4f1ea"/>
+            <rect x="40" y="136" width="260" height="36" rx="4" fill="#ff7a1a"/>
+            <rect x="40" y="200" width="280" height="14" rx="7" fill="#f4f1ea" opacity=".3"/>
+            <rect x="40" y="244" width="170" height="38" rx="4" fill="#ff7a1a"/>
+            <circle cx="620" cy="150" r="80" fill="none" stroke="#ff7a1a" stroke-width="2" opacity=".4"/>
+            <circle cx="620" cy="150" r="52" fill="none" stroke="#ff7a1a" stroke-width="2" stroke-dasharray="3 8" opacity=".6"/>
+            <rect x="40" y="330" width="226" height="130" rx="6" fill="#1e1a16"/>
+            <rect x="286" y="330" width="226" height="130" rx="6" fill="#1e1a16"/>
+            <rect x="532" y="330" width="226" height="130" rx="6" fill="#1e1a16"/>
+            <rect x="60" y="352" width="60" height="8" rx="4" fill="#ff7a1a" opacity=".8"/>
+            <rect x="60" y="372" width="150" height="14" rx="4" fill="#f4f1ea" opacity=".75"/>
+            <rect x="306" y="352" width="60" height="8" rx="4" fill="#ff7a1a" opacity=".8"/>
+            <rect x="306" y="372" width="150" height="14" rx="4" fill="#f4f1ea" opacity=".75"/>
+            <rect x="552" y="352" width="60" height="8" rx="4" fill="#ff7a1a" opacity=".8"/>
+            <rect x="552" y="372" width="150" height="14" rx="4" fill="#f4f1ea" opacity=".75"/>
+          </svg>
+        </a>
+        <div>
+          <p class="num">ПРОЕКТ 03</p>
+          <h2>TORQLAB</h2>
+          <p class="field">Автосервис · B2C-лендинг</p>
+          <p class="desc">Тёмная техническая стилистика: интерактивный подбор услуги по симптомам автомобиля, сетка услуг с ценами и прозрачный процесс ремонта.</p>
+          <div class="tags"><span class="tag">Подбор по симптомам</span><span class="tag">Тёмная тема</span><span class="tag">Адаптив 375–1440</span></div>
+          <a class="btn solid" href="auto/">Открыть демо →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <span class="mono">WEB·STUDIO · демонстрационные проекты</span>
+      <span class="mono">HTML · CSS · JS · <b>без сборки</b></span>
+    </div>
+    <p class="demo-note">Все три проекта — демонстрационные: названия компаний, контакты, цены и отзывы вымышлены и показывают только дизайн и вёрстку. Формы работают в демо-режиме и не передают данные.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÉLAN STUDIO — салон красоты в Москве | Демонстрационный проект</title>
+<meta name="description" content="ÉLAN STUDIO — демонстрационный сайт салона красоты: стрижки, окрашивание, уход, маникюр. Онлайн-запись, портфолио мастеров. Портфолио веб-студии.">
+<meta property="og:title" content="ÉLAN STUDIO — салон красоты">
+<meta property="og:description" content="Красота как редакционный стандарт. Онлайн-запись к мастерам. Демонстрационный проект веб-студии.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf8f5; --bg-soft:#f3efe9; --ink:#211a15; --ink-70:rgba(33,26,21,.7); --ink-45:rgba(33,26,21,.45);
+  --line:rgba(33,26,21,.14); --accent:#a47e63; --accent-deep:#7d5a42;
+  --f-display:"Cormorant Garamond",Georgia,serif; --f-body:"Jost",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--accent-deep);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.kicker{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent-deep);font-weight:500}
+
+/* demo ribbon */
+.demo-ribbon{position:fixed;right:-58px;top:42px;z-index:60;transform:rotate(45deg);background:var(--ink);color:var(--bg);
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;padding:.55rem 4.2rem;box-shadow:0 4px 18px rgba(33,26,21,.3)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(250,248,245,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px}
+.logo{font-family:var(--f-display);font-weight:600;font-size:1.45rem;letter-spacing:.14em;text-transform:uppercase}
+.logo i{font-style:italic;letter-spacing:0}
+nav.main{display:flex;gap:2.4rem}
+nav.main a{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;position:relative;padding:6px 0;min-height:44px;display:inline-flex;align-items:center;color:var(--ink-70);transition:color .25s}
+nav.main a:hover{color:var(--ink)}
+nav.main a::after{content:"";position:absolute;left:50%;bottom:2px;width:0;height:1px;background:var(--accent-deep);transition:width .3s ease-out,left .3s ease-out}
+nav.main a:hover::after{width:100%;left:0}
+.hd .book-link{border:1px solid var(--ink);padding:10px 22px;border-radius:999px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:all .25s;min-height:44px;display:inline-flex;align-items:center}
+.hd .book-link:hover{background:var(--ink);color:var(--bg)}
+.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center}
+.mnav{display:none;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);padding:8px clamp(20px,4vw,48px) 24px}
+.mnav a{padding:14px 0;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--line);min-height:48px;display:flex;align-items:center}
+.mnav a:last-child{border-bottom:none}
+.mnav.open{display:flex}
+
+/* hero */
+.hero{min-height:calc(100dvh - 76px);display:grid;align-items:center;padding:clamp(32px,6vh,72px) 0}
+.hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
+.hero-copy{grid-column:1/6}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.8rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.01em}
+h1 i{font-style:italic;color:var(--accent-deep)}
+.hero-copy p.sub{margin-top:26px;color:var(--ink-70);max-width:40ch;font-weight:300;font-size:1.08rem}
+.cta-row{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:52px;padding:0 2rem;border-radius:999px;
+  font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border:1px solid var(--ink);transition:all .3s cubic-bezier(.4,0,.2,1)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+.btn:active{transform:scale(.97)}
+.hero-vis{grid-column:6/13;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.panel{border-radius:2px;overflow:hidden;position:relative}
+.panel svg{width:100%;height:auto;display:block}
+.panel.p1{transform:translateY(28px)}
+.panel figcaption{position:absolute;bottom:12px;left:14px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:#faf8f5;text-shadow:0 1px 8px rgba(33,26,21,.5)}
+.hero-index{position:absolute;right:clamp(8px,2vw,24px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px}
+.hero-index span{font-size:.68rem;letter-spacing:.2em;color:var(--ink-45);writing-mode:vertical-rl}
+.hero-index span.cur{color:var(--accent-deep)}
+
+/* ticker */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden}
+.ticker-track{display:flex;gap:0;width:max-content;animation:tk 30s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{font-family:var(--f-display);font-style:italic;font-size:1.25rem;color:var(--ink-70);padding:0 1.6rem;white-space:nowrap}
+@keyframes tk{to{transform:translate3d(-50%,0,0)}}
+
+/* services */
+section.block{padding:clamp(72px,11vh,120px) 0;position:relative}
+.sec-no{position:absolute;top:clamp(72px,11vh,120px);right:clamp(12px,3vw,36px);font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--ink-45)}
+.sec-head{max-width:560px;margin-bottom:56px}
+.sec-head h2{font-family:var(--f-display);font-weight:500;font-size:clamp(2.1rem,4vw,3.2rem);line-height:1.08;margin-top:16px}
+.tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:0;flex-wrap:wrap}
+.tab{padding:14px 2px;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--ink-45);border-bottom:1px solid transparent;margin-bottom:-1px;min-height:48px;transition:color .25s,border-color .25s}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--ink)}
+.svc-list{border-bottom:1px solid var(--line)}
+.svc-row{display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:baseline;padding:24px 0;border-top:1px solid var(--line);transition:padding-left .3s ease-out}
+.svc-row:hover{padding-left:12px}
+.svc-row .nm{font-family:var(--f-display);font-size:clamp(1.2rem,2vw,1.55rem);font-weight:500}
+.svc-row .nm small{display:block;font-family:var(--f-body);font-size:.82rem;color:var(--ink-45);font-weight:300;letter-spacing:.02em;margin-top:2px}
+.svc-row .tm{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-45)}
+.svc-row .pr{font-family:var(--f-display);font-size:1.3rem;color:var(--accent-deep);white-space:nowrap}
+.svc-empty{display:none;padding:40px 0;color:var(--ink-45);font-style:italic;font-family:var(--f-display);font-size:1.2rem}
+
+/* masters */
+.masters-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.master{text-align:left}
+.master .frame{border-radius:2px;overflow:hidden;aspect-ratio:3/4;position:relative;background:var(--bg-soft)}
+.master .frame svg{width:100%;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.master:hover .frame svg{transform:scale(1.04)}
+.master .info{padding:16px 2px 0}
+.master .info b{font-family:var(--f-display);font-weight:600;font-size:1.2rem;display:block}
+.master .info span{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45)}
+.master .info em{display:block;font-style:normal;font-size:.85rem;color:var(--ink-70);margin-top:8px;font-weight:300}
+
+/* ritual band */
+.ritual{background:var(--ink);color:var(--bg)}
+.ritual .wrap{padding-top:clamp(72px,10vh,110px);padding-bottom:clamp(72px,10vh,110px)}
+.ritual-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.ritual h2{font-family:var(--f-display);font-weight:500;font-size:clamp(2rem,3.6vw,3rem);line-height:1.1}
+.ritual h2 i{font-style:italic;color:#d3b394}
+.ritual p{color:rgba(250,248,245,.7);margin-top:22px;font-weight:300;max-width:44ch}
+.steps{display:grid;gap:0;border-left:1px solid rgba(250,248,245,.16)}
+.step{padding:20px 0 20px 26px;border-bottom:1px solid rgba(250,248,245,.16);display:flex;gap:18px;align-items:baseline}
+.step:last-child{border-bottom:none}
+.step .n{font-family:var(--f-display);font-style:italic;color:#d3b394;font-size:1.05rem;min-width:28px}
+.step b{font-family:var(--f-display);font-weight:600;font-size:1.15rem;display:block}
+.step span{color:rgba(250,248,245,.62);font-size:.88rem;font-weight:300}
+
+/* booking */
+.book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.book h2{font-family:var(--f-display);font-weight:500;font-size:clamp(2rem,3.6vw,3rem);margin-top:16px}
+.book .lead{color:var(--ink-70);font-weight:300;margin-top:18px;max-width:40ch}
+.book-form{border:1px solid var(--line);border-radius:2px;padding:40px;background:#fff}
+.b-step{display:none}
+.b-step.on{display:block}
+.b-label{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent-deep);font-weight:500;margin-bottom:20px}
+.pills{display:grid;gap:10px}
+.pill{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:52px;padding:0 20px;border:1px solid var(--line);border-radius:2px;font-size:.95rem;transition:all .2s;text-align:left}
+.pill:hover{border-color:var(--ink)}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pill small{opacity:.65;font-size:.8rem}
+.b-nav{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
+.b-nav .btn{min-height:48px;padding:0 1.5rem}
+.dots{display:flex;gap:8px;margin-bottom:24px}
+.dots i{width:26px;height:2px;background:var(--line);transition:background .3s}
+.dots i.cur{background:var(--accent-deep)}
+input.txt{width:100%;min-height:52px;border:1px solid var(--line);border-radius:2px;padding:0 16px;font:inherit;background:var(--bg);margin-bottom:12px;transition:border-color .2s}
+input.txt:focus{border-color:var(--accent-deep);outline:none}
+.b-done{display:none;text-align:center;padding:32px 0}
+.b-done b{font-family:var(--f-display);font-size:1.6rem;font-weight:600;display:block;margin-bottom:12px}
+.b-done p{color:var(--ink-70);font-weight:300}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:56px 0 44px}
+.ft{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.ft .logo{font-size:1.3rem}
+.ft-meta{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-45);line-height:2.2}
+.demo-note{margin-top:36px;padding-top:22px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--ink-45);max-width:72ch;font-weight:300}
+
+@media (max-width:1020px){
+  .hero-copy{grid-column:1/13}
+  .hero-vis{grid-column:1/13;margin-top:48px}
+  .masters-grid{grid-template-columns:repeat(2,1fr)}
+  .ritual-grid,.book-grid{grid-template-columns:1fr;gap:48px}
+  .hero-index{display:none}
+}
+@media (max-width:760px){
+  nav.main,.hd .book-link{display:none}
+  .burger{display:flex}
+  .svc-row{grid-template-columns:1fr auto}
+  .svc-row .tm{display:none}
+  .demo-ribbon{right:-66px;top:30px;font-size:.54rem}
+  .book-form{padding:28px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .ticker-track{animation:none;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">Демонстрационный проект</div>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="ÉLAN STUDIO — на главную">Élan <i>studio</i></a>
+    <nav class="main" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#masters">Мастера</a>
+      <a href="#ritual">Атмосфера</a>
+      <a href="#book">Запись</a>
+    </nav>
+    <a class="book-link" href="#book">Записаться</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Мобильная навигация">
+    <a href="#services">Услуги</a>
+    <a href="#masters">Мастера</a>
+    <a href="#ritual">Атмосфера</a>
+    <a href="#book">Запись</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Салон красоты · Москва, Патриаршие</p>
+        <h1 style="margin-top:20px">Красота как<br><i>редакционный</i><br>стандарт</h1>
+        <p class="sub">Колористы международного класса, тихий сервис и честные рекомендации. Мы не продаём процедуры — мы собираем ваш образ.</p>
+        <div class="cta-row">
+          <a class="btn solid" href="#book">Записаться онлайн</a>
+          <a class="btn ghost" href="#services">Услуги и цены</a>
+        </div>
+      </div>
+      <div class="hero-vis" aria-hidden="false">
+        <figure class="panel p1">
+          <svg viewBox="0 0 360 480" role="img" aria-label="Абстрактный портрет — укладка в тёплых тонах">
+            <rect width="360" height="480" fill="#e9dfd2"/>
+            <circle cx="180" cy="200" r="110" fill="#a47e63" opacity=".55"/>
+            <circle cx="180" cy="190" r="78" fill="#e5cdb9"/>
+            <path d="M102 190 Q180 60 258 190 L258 250 Q180 210 102 250 Z" fill="#4b3627"/>
+            <rect x="146" y="240" width="68" height="60" rx="30" fill="#e5cdb9"/>
+            <path d="M96 480 Q120 320 180 320 Q240 320 264 480 Z" fill="#7d5a42"/>
+            <circle cx="284" cy="96" r="26" fill="#faf8f5" opacity=".55"/>
+          </svg>
+          <figcaption>Укладка · Лук</figcaption>
+        </figure>
+        <figure class="panel">
+          <svg viewBox="0 0 360 480" role="img" aria-label="Абстрактный портрет — окрашивание аиртач">
+            <rect width="360" height="480" fill="#ded1c2"/>
+            <circle cx="180" cy="205" r="112" fill="#7d5a42" opacity=".5"/>
+            <circle cx="180" cy="192" r="76" fill="#ecd6c3"/>
+            <path d="M104 192 Q140 70 180 84 Q220 70 256 192 Q230 150 180 152 Q130 150 104 192 Z" fill="#8a6a4e"/>
+            <path d="M104 192 Q110 300 138 330 L150 240 Q120 220 104 192 Z" fill="#8a6a4e"/>
+            <path d="M256 192 Q250 300 222 330 L210 240 Q240 220 256 192 Z" fill="#8a6a4e"/>
+            <path d="M96 480 Q118 318 180 318 Q242 318 264 480 Z" fill="#3d2c1f"/>
+            <circle cx="76" cy="380" r="20" fill="#a47e63" opacity=".5"/>
+          </svg>
+          <figcaption>Окрашивание · Аиртач</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="hero-index" aria-hidden="true">
+      <span class="cur">01 — Стрижки</span><span>02 — Цвет</span><span>03 — Уход</span>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tk">
+      <span>«Лучшее окрашивание в моей жизни»</span><span>—</span>
+      <span>«Впервые мастер отговорил меня от лишнего»</span><span>—</span>
+      <span>«Тихо, красиво, без навязывания»</span><span>—</span>
+      <span>«Хожу сюда три года и ни разу не изменила»</span><span>—</span>
+    </div>
+  </div>
+
+  <section class="block" id="services">
+    <span class="sec-no" aria-hidden="true">№ 01</span>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Прайс</p>
+        <h2>Услуги и стоимость</h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Категории услуг" id="tabs">
+        <button class="tab" role="tab" aria-selected="true" data-cat="all">Все</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="hair">Волосы</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="color">Окрашивание</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="care">Уход</button>
+        <button class="tab" role="tab" aria-selected="false" data-cat="nails">Маникюр</button>
+      </div>
+      <div class="svc-list" id="svcList">
+        <div class="svc-row" data-cat="hair"><div class="nm">Стрижка с укладкой<small>Женская, любая длина</small></div><div class="tm">90 мин</div><div class="pr">от 4 500 ₽</div></div>
+        <div class="svc-row" data-cat="hair"><div class="nm">Мужская стрижка<small>Классика и фейды</small></div><div class="tm">60 мин</div><div class="pr">от 2 800 ₽</div></div>
+        <div class="svc-row" data-cat="color"><div class="nm">Аиртач / шатуш<small>Сложное окрашивание с растяжкой</small></div><div class="tm">4–6 ч</div><div class="pr">от 14 000 ₽</div></div>
+        <div class="svc-row" data-cat="color"><div class="nm">Тонирование<small>Поддержание оттенка</small></div><div class="tm">120 мин</div><div class="pr">от 6 500 ₽</div></div>
+        <div class="svc-row" data-cat="care"><div class="nm">Реконструкция волос<small>Глубокое восстановление</small></div><div class="tm">90 мин</div><div class="pr">от 5 200 ₽</div></div>
+        <div class="svc-row" data-cat="care"><div class="nm">Уход за кожей головы<small>Диагностика + пилинг</small></div><div class="tm">60 мин</div><div class="pr">от 3 800 ₽</div></div>
+        <div class="svc-row" data-cat="nails"><div class="nm">Маникюр с покрытием<small>Аппаратный, гель-лак</small></div><div class="tm">120 мин</div><div class="pr">от 3 600 ₽</div></div>
+        <div class="svc-row" data-cat="nails"><div class="nm">Педикюр smart<small>Без воды, стерильно</small></div><div class="tm">90 мин</div><div class="pr">от 4 200 ₽</div></div>
+      </div>
+      <p class="svc-empty" id="svcEmpty">В этой категории скоро появятся услуги</p>
+    </div>
+  </section>
+
+  <section class="block" id="masters" style="background:var(--bg-soft)">
+    <span class="sec-no" aria-hidden="true">№ 02</span>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Команда</p>
+        <h2>Мастера, которым доверяют</h2>
+      </div>
+      <div class="masters-grid">
+        <div class="master">
+          <div class="frame">
+            <svg viewBox="0 0 300 400" role="img" aria-label="Портрет мастера Анны">
+              <rect width="300" height="400" fill="#e3d7c8"/>
+              <circle cx="150" cy="160" r="86" fill="#a47e63" opacity=".4"/>
+              <circle cx="150" cy="152" r="60" fill="#ecd6c3"/>
+              <path d="M92 150 Q150 40 208 150 L208 196 Q150 168 92 196 Z" fill="#43301f"/>
+              <path d="M74 400 Q96 250 150 250 Q204 250 226 400 Z" fill="#7d5a42"/>
+            </svg>
+          </div>
+          <div class="info"><b>Анна Соколова</b><span>Арт-директор · стрижки</span><em>12 лет опыта, финалист международных конкурсов</em></div>
+        </div>
+        <div class="master">
+          <div class="frame">
+            <svg viewBox="0 0 300 400" role="img" aria-label="Портрет мастера Марии">
+              <rect width="300" height="400" fill="#dccfbe"/>
+              <circle cx="150" cy="160" r="86" fill="#7d5a42" opacity=".4"/>
+              <circle cx="150" cy="152" r="60" fill="#e5cdb9"/>
+              <path d="M94 152 Q150 52 206 152 Q196 96 150 96 Q104 96 94 152 Z" fill="#8a6a4e"/>
+              <path d="M94 152 Q90 260 118 286 L124 196 Q100 178 94 152 Z" fill="#8a6a4e"/>
+              <path d="M206 152 Q210 260 182 286 L176 196 Q200 178 206 152 Z" fill="#8a6a4e"/>
+              <path d="M74 400 Q96 250 150 250 Q204 250 226 400 Z" fill="#3d2c1f"/>
+            </svg>
+          </div>
+          <div class="info"><b>Мария Лебедева</b><span>Колорист</span><em>Аиртач и сложные растяжки, 8 лет практики</em></div>
+        </div>
+        <div class="master">
+          <div class="frame">
+            <svg viewBox="0 0 300 400" role="img" aria-label="Портрет мастера Ольги">
+              <rect width="300" height="400" fill="#e7ddcf"/>
+              <circle cx="150" cy="160" r="86" fill="#a47e63" opacity=".35"/>
+              <circle cx="150" cy="152" r="60" fill="#f0dcc9"/>
+              <path d="M90 148 Q150 36 210 148 L210 210 Q190 170 150 172 Q110 170 90 210 Z" fill="#5a4030"/>
+              <path d="M74 400 Q96 250 150 250 Q204 250 226 400 Z" fill="#a47e63"/>
+            </svg>
+          </div>
+          <div class="info"><b>Ольга Ким</b><span>Топ-стилист ногтевого сервиса</span><em>Стерильность и архитектура формы, 9 лет</em></div>
+        </div>
+        <div class="master">
+          <div class="frame">
+            <svg viewBox="0 0 300 400" role="img" aria-label="Портрет мастера Давида">
+              <rect width="300" height="400" fill="#d8c9b6"/>
+              <circle cx="150" cy="160" r="86" fill="#7d5a42" opacity=".35"/>
+              <circle cx="150" cy="152" r="60" fill="#e0c5ac"/>
+              <path d="M96 140 Q150 60 204 140 L204 150 Q150 118 96 150 Z" fill="#2c1f16"/>
+              <path d="M118 196 Q150 226 182 196 L182 224 Q150 246 118 224 Z" fill="#2c1f16"/>
+              <path d="M74 400 Q96 250 150 250 Q204 250 226 400 Z" fill="#5a4030"/>
+            </svg>
+          </div>
+          <div class="info"><b>Давид Арутюнян</b><span>Барбер</span><em>Классические формы и королевское бритьё</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ritual" id="ritual">
+    <div class="wrap ritual-grid">
+      <div>
+        <p class="kicker" style="color:#d3b394">Атмосфера</p>
+        <h2 style="margin-top:18px">Два часа, которые<br>принадлежат <i>только вам</i></h2>
+        <p>Никакой суеты и параллельных записей: один мастер — один гость. Тихая музыка, кофе на зерне и честный разговор о том, что действительно подойдёт именно вам.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">i.</span><div><b>Консультация</b><span>15 минут до начала — обсуждаем желания и ограничения</span></div></div>
+        <div class="step"><span class="n">ii.</span><div><b>Ритуал</b><span>Аромат, массаж головы и неторопливый процесс</span></div></div>
+        <div class="step"><span class="n">iii.</span><div><b>Инструктаж</b><span>Показываем, как повторить укладку дома за 10 минут</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block book" id="book">
+    <span class="sec-no" aria-hidden="true">№ 03</span>
+    <div class="wrap book-grid">
+      <div>
+        <p class="kicker">Онлайн-запись</p>
+        <h2>Три шага — и вы в кресле</h2>
+        <p class="lead">Выберите услугу, мастера и удобный день. Подтвердим запись сообщением в течение 15 минут.</p>
+        <p class="lead" style="margin-top:14px;font-size:.85rem">Или позвоните: <a href="tel:+74950000000" style="border-bottom:1px solid var(--accent-deep)">+7 495 000-00-00</a></p>
+      </div>
+      <div class="book-form" id="bookForm">
+        <div class="dots" aria-hidden="true"><i class="cur"></i><i></i><i></i></div>
+        <div class="b-step on" data-step="1">
+          <p class="b-label">Шаг 1 · Услуга</p>
+          <div class="pills" id="svcPills" role="group" aria-label="Выбор услуги">
+            <button class="pill" data-v="Стрижка с укладкой">Стрижка с укладкой <small>от 4 500 ₽</small></button>
+            <button class="pill" data-v="Окрашивание аиртач">Окрашивание аиртач <small>от 14 000 ₽</small></button>
+            <button class="pill" data-v="Реконструкция волос">Реконструкция волос <small>от 5 200 ₽</small></button>
+            <button class="pill" data-v="Маникюр с покрытием">Маникюр с покрытием <small>от 3 600 ₽</small></button>
+          </div>
+        </div>
+        <div class="b-step" data-step="2">
+          <p class="b-label">Шаг 2 · Мастер</p>
+          <div class="pills" id="mstPills" role="group" aria-label="Выбор мастера">
+            <button class="pill" data-v="Анна Соколова">Анна Соколова <small>арт-директор</small></button>
+            <button class="pill" data-v="Мария Лебедева">Мария Лебедева <small>колорист</small></button>
+            <button class="pill" data-v="Ольга Ким">Ольга Ким <small>ногтевой сервис</small></button>
+            <button class="pill" data-v="Любой свободный">Любой свободный <small>подберём под дату</small></button>
+          </div>
+        </div>
+        <div class="b-step" data-step="3">
+          <p class="b-label">Шаг 3 · Контакты</p>
+          <form id="bkForm" novalidate>
+            <input class="txt" type="text" name="name" placeholder="Ваше имя" autocomplete="name">
+            <input class="txt" type="tel" name="phone" placeholder="+7 ___ ___-__-__" autocomplete="tel" required>
+            <input class="txt" type="text" name="date" placeholder="Удобные день и время" autocomplete="off">
+          </form>
+          <p style="font-size:.8rem;color:var(--ink-45);font-weight:300">Демо-режим: данные никуда не отправляются.</p>
+        </div>
+        <div class="b-nav">
+          <button class="btn ghost" id="bBack" style="visibility:hidden">Назад</button>
+          <button class="btn solid" id="bNext">Далее</button>
+        </div>
+        <div class="b-done" id="bDone">
+          <b>Запись создана</b>
+          <p id="bSummary"></p>
+          <p style="margin-top:10px;font-size:.85rem">В демо-режиме заявка не отправляется — на реальном сайте здесь была бы синхронизация с журналом записи.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <p class="logo">Élan <i>studio</i></p>
+        <p class="ft-meta" style="margin-top:10px">Москва, Большой Патриарший пер., 7<br>Ежедневно 10:00—21:00</p>
+      </div>
+      <div class="ft-meta">
+        +7 495 000-00-00<br>hello@elanstudio.example<br>@elanstudio
+      </div>
+    </div>
+    <p class="demo-note">Демонстрационный проект веб-студии. Название, мастера, отзывы, контакты и цены вымышлены и показывают только дизайн и вёрстку. Форма записи не собирает и не передаёт персональные данные.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
+  burger.addEventListener('click',function(){
+    var open=mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  mnav.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');}
+  });
+  var tk=document.getElementById('tk');tk.innerHTML+=tk.innerHTML;
+  // service tabs
+  var tabs=document.getElementById('tabs'),rows=document.querySelectorAll('#svcList .svc-row'),empty=document.getElementById('svcEmpty');
+  tabs.addEventListener('click',function(e){
+    var t=e.target.closest('.tab');if(!t)return;
+    tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false');});
+    t.setAttribute('aria-selected','true');
+    var cat=t.dataset.cat,shown=0;
+    rows.forEach(function(r){
+      var vis=cat==='all'||r.dataset.cat===cat;
+      r.style.display=vis?'':'none';if(vis)shown++;
+    });
+    empty.style.display=shown?'none':'block';
+  });
+  // booking wizard
+  var steps=document.querySelectorAll('.b-step'),dots=document.querySelectorAll('.dots i'),
+      back=document.getElementById('bBack'),next=document.getElementById('bNext'),done=document.getElementById('bDone'),
+      nav=document.querySelector('.b-nav'),cur=1,sel={svc:null,mst:null};
+  function bind(group,key){
+    document.getElementById(group).addEventListener('click',function(e){
+      var p=e.target.closest('.pill');if(!p)return;
+      this.querySelectorAll('.pill').forEach(function(x){x.setAttribute('aria-pressed','false');});
+      p.setAttribute('aria-pressed','true');sel[key]=p.dataset.v;
+    });
+  }
+  bind('svcPills','svc');bind('mstPills','mst');
+  function show(n){
+    cur=n;
+    steps.forEach(function(s){s.classList.toggle('on',+s.dataset.step===n);});
+    dots.forEach(function(d,i){d.classList.toggle('cur',i<n);});
+    back.style.visibility=n>1?'visible':'hidden';
+    next.textContent=n===3?'Записаться':'Далее';
+  }
+  back.addEventListener('click',function(){if(cur>1)show(cur-1);});
+  next.addEventListener('click',function(){
+    if(cur===1&&!sel.svc){pulse('svcPills');return;}
+    if(cur===2&&!sel.mst){pulse('mstPills');return;}
+    if(cur<3){show(cur+1);return;}
+    var f=document.getElementById('bkForm');
+    var phone=f.phone.value.replace(/\D/g,'');
+    if(phone.length<10){f.phone.style.borderColor='#b3261e';f.phone.focus();return;}
+    f.phone.style.borderColor='';
+    document.getElementById('bSummary').textContent=(sel.svc||'Услуга')+' · '+(sel.mst||'мастер')+(f.date.value?(' · '+f.date.value):'');
+    steps.forEach(function(s){s.classList.remove('on');});
+    nav.style.display='none';done.style.display='block';
+  });
+  function pulse(id){
+    var el=document.getElementById(id);
+    el.style.transition='transform .15s';el.style.transform='translateX(-4px)';
+    setTimeout(function(){el.style.transform='translateX(4px)';},150);
+    setTimeout(function(){el.style.transform='';},300);
+  }
+  show(1);
+})();
+</script>
+</body>
+</html>

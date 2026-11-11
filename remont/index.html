@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATELIERDOM — ремонт квартир под ключ в Москве | Демонстрационный проект</title>
+<meta name="description" content="ATELIERDOM — демонстрационный лендинг студии ремонта квартир: фиксированная смета, дизайн-проект в подарок, гарантия 3 года. Портфолио веб-студии.">
+<meta property="og:title" content="ATELIERDOM — ремонт квартир под ключ">
+<meta property="og:description" content="Фиксированная смета. Срок по договору. Гарантия 3 года. Демонстрационный проект веб-студии.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fcfcf8; --bg-soft:#f6f3ec; --ink:#2a160d; --ink-70:rgba(42,22,13,.7); --ink-45:rgba(42,22,13,.45);
+  --line:rgba(42,22,13,.16); --accent:#8a5a2b; --accent-soft:rgba(138,90,43,.12);
+  --radius:.375rem;
+  --f-display:"Playfair Display",Georgia,serif; --f-body:"Manrope",system-ui,sans-serif; --f-mono:"IBM Plex Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.mono{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-45)}
+.mono b{color:var(--accent);font-weight:500}
+
+/* demo ribbon */
+.demo-ribbon{position:fixed;left:-58px;bottom:38px;z-index:60;transform:rotate(45deg);background:var(--accent);color:#fcfcf8;
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 4rem;box-shadow:0 4px 18px rgba(42,22,13,.28)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(252,252,248,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.brand{display:flex;align-items:baseline;gap:.5rem}
+.brand .logo{font-family:var(--f-display);font-weight:700;font-size:1.32rem;letter-spacing:.02em}
+nav.main{display:flex;gap:2rem}
+nav.main a{font-size:.92rem;font-weight:500;position:relative;padding:6px 0;min-height:44px;display:inline-flex;align-items:center}
+nav.main a::after{content:"";position:absolute;left:0;bottom:2px;width:0;height:1px;background:var(--accent);transition:width .25s ease-out}
+nav.main a:hover::after{width:100%}
+.hd .phone{font-family:var(--f-mono);font-size:.85rem;white-space:nowrap}
+.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center}
+.burger svg{width:24px;height:24px}
+.mnav{display:none;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);padding:8px clamp(20px,4vw,48px) 24px}
+.mnav a{padding:14px 0;font-size:1.05rem;border-bottom:1px solid var(--line);min-height:48px;display:flex;align-items:center}
+.mnav a:last-child{border-bottom:none}
+.mnav.open{display:flex}
+
+/* hero */
+.hero{padding:clamp(48px,8vh,96px) 0 clamp(40px,6vh,72px)}
+.hero-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.hero-left{grid-column:1/8}
+.hero-right{grid-column:8/13;text-align:right}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(2.6rem,6.4vw,5rem);line-height:1.04;letter-spacing:-.018em}
+h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{margin-top:26px;max-width:52ch;color:var(--ink-70);font-size:1.06rem}
+.cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.6rem;min-height:52px;padding:0 1.9rem;border-radius:999px;font-weight:600;font-size:.95rem;
+  border:1.5px solid var(--ink);transition:background .25s cubic-bezier(.4,0,.2,1),color .25s cubic-bezier(.4,0,.2,1),transform .2s ease-out}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent)}
+.btn.ghost:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.btn:active{transform:scale(.97)}
+.btn .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.hero-fact{font-family:var(--f-mono);font-size:.78rem;line-height:1.9;color:var(--ink-70);letter-spacing:.04em}
+.hero-fact b{display:block;font-size:2.4rem;font-family:var(--f-display);color:var(--ink);font-weight:600;letter-spacing:-.01em}
+
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:14px 0;background:var(--bg-soft)}
+.marquee-track{display:flex;gap:3.2rem;width:max-content;animation:mq 26s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-70);white-space:nowrap}
+@keyframes mq{to{transform:translate3d(-50%,0,0)}}
+
+/* sections */
+section.block{padding:clamp(64px,10vh,110px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:48px}
+.sec-head h2{font-family:var(--f-display);font-weight:600;font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:-.015em}
+
+/* services */
+.svc{border-top:1px solid var(--line)}
+.svc-item{display:grid;grid-template-columns:70px 1.4fr 2fr auto;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);
+  transition:background .25s ease-out,padding-left .25s ease-out;position:relative}
+.svc-item:hover{background:var(--bg-soft);padding-left:14px}
+.svc-item:focus-within{background:var(--bg-soft)}
+.svc-num{font-family:var(--f-mono);color:var(--ink-45);font-size:.8rem}
+.svc-name{font-family:var(--f-display);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:600}
+.svc-desc{color:var(--ink-70);font-size:.95rem;max-width:46ch}
+.svc-price{font-family:var(--f-mono);font-size:.92rem;white-space:nowrap;color:var(--accent)}
+.svc-arrow{width:34px;height:34px;opacity:0;transition:opacity .25s,transform .25s;transform:translateX(-8px)}
+.svc-item:hover .svc-arrow{opacity:1;transform:none}
+
+/* works: asymmetric masonry-ish */
+.works-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.work{border-radius:var(--radius);overflow:hidden;position:relative;display:block}
+.work .ph{width:100%;height:100%}
+.work figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-end;
+  background:linear-gradient(to top,rgba(42,22,13,.62),transparent);color:#fcfcf8;opacity:0;transform:translateY(8px);transition:opacity .3s ease-out,transform .3s ease-out}
+.work:hover figcaption,.work:focus-visible figcaption{opacity:1;transform:none}
+.work figcaption b{font-family:var(--f-display);font-weight:600;font-size:1.05rem}
+.work figcaption span{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.w1{grid-column:1/8;aspect-ratio:16/10}
+.w2{grid-column:8/13;aspect-ratio:4/4.55}
+.w3{grid-column:1/6;aspect-ratio:4/4.55;margin-top:-72px}
+.w4{grid-column:6/13;aspect-ratio:16/10}
+.ph-svg{width:100%;height:100%;object-fit:cover}
+
+/* process */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.proc{padding:32px 28px 40px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);transition:background .25s}
+.proc:last-child{border-right:none}
+.proc:hover{background:var(--bg-soft)}
+.proc .n{font-family:var(--f-mono);font-size:.75rem;color:var(--accent);letter-spacing:.14em}
+.proc h3{font-family:var(--f-display);font-size:1.35rem;font-weight:600;margin:14px 0 10px}
+.proc p{color:var(--ink-70);font-size:.92rem}
+
+/* guarantee band */
+.band{background:var(--ink);color:var(--bg)}
+.band .wrap{padding-top:clamp(64px,9vh,96px);padding-bottom:clamp(64px,9vh,96px)}
+.band-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.band h2{font-family:var(--f-display);font-weight:600;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.015em;line-height:1.12}
+.band h2 em{font-style:italic;color:#d8b48c}
+.band p{color:rgba(252,252,248,.72);margin-top:20px;max-width:48ch}
+.guarantees{display:grid;gap:0;border-left:1px solid rgba(252,252,248,.18)}
+.g-item{padding:22px 0 22px 28px;border-bottom:1px solid rgba(252,252,248,.18)}
+.g-item:last-child{border-bottom:none}
+.g-item b{font-family:var(--f-display);font-size:1.15rem;font-weight:600;display:block;margin-bottom:4px}
+.g-item span{color:rgba(252,252,248,.66);font-size:.9rem}
+
+/* calculator */
+.calc-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.calc h2{font-family:var(--f-display);font-weight:600;font-size:clamp(1.9rem,3.4vw,2.8rem);letter-spacing:-.015em;margin-bottom:12px}
+.calc .lead{color:var(--ink-70);max-width:48ch}
+.field{margin-top:30px}
+.field label{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-70);margin-bottom:12px}
+.field label output{color:var(--accent);font-size:.9rem}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:2px;background:var(--line);border-radius:2px;outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid var(--bg);box-shadow:0 0 0 1.5px var(--ink);cursor:pointer;transition:transform .15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--ink);border:none;cursor:pointer}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 1.2rem;border-radius:999px;border:1.5px solid var(--line);font-size:.88rem;font-weight:600;transition:all .2s ease-out}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.calc-out{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:36px}
+.calc-out .price{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,3rem);font-weight:600;letter-spacing:-.01em}
+.calc-out .per{font-family:var(--f-mono);font-size:.75rem;color:var(--ink-45);letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+.calc-out hr{border:none;border-top:1px solid var(--line);margin:24px 0}
+.calc-out .btn{width:100%;justify-content:center}
+.note{font-size:.8rem;color:var(--ink-45);margin-top:16px;line-height:1.55}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:48px 0 40px}
+.ft{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.ft .logo{font-family:var(--f-display);font-weight:700;font-size:1.4rem}
+.ft-meta{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-45);letter-spacing:.06em;line-height:2;text-transform:uppercase}
+.demo-note{margin-top:32px;padding-top:20px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--ink-45);max-width:72ch}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-bg{position:absolute;inset:0;background:rgba(42,22,13,.5);backdrop-filter:blur(6px)}
+.modal-card{position:relative;background:var(--bg);border-radius:12px;max-width:460px;width:100%;padding:40px;box-shadow:0 30px 80px rgba(42,22,13,.35)}
+.modal-card h3{font-family:var(--f-display);font-size:1.6rem;font-weight:600;margin-bottom:8px}
+.modal-card p{color:var(--ink-70);font-size:.92rem;margin-bottom:24px}
+.modal-card input[type=text],.modal-card input[type=tel]{width:100%;min-height:52px;border:1.5px solid var(--line);border-radius:8px;padding:0 16px;font:inherit;background:#fff;margin-bottom:12px;transition:border-color .2s}
+.modal-card input:focus{border-color:var(--accent);outline:none}
+.modal-x{position:absolute;top:14px;right:14px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
+.modal-x:hover{background:var(--bg-soft)}
+.form-ok{display:none;text-align:center;padding:24px 0}
+.form-ok b{font-family:var(--f-display);font-size:1.4rem;display:block;margin-bottom:10px}
+
+@media (max-width:1020px){
+  .hero-left{grid-column:1/13}.hero-right{grid-column:1/13;text-align:left;margin-top:28px}
+  .hero-fact{display:flex;gap:40px}
+  .svc-item{grid-template-columns:50px 1fr auto;grid-template-rows:auto auto}
+  .svc-desc{grid-column:2/4}
+  .w1{grid-column:1/13;aspect-ratio:16/9}.w2{grid-column:1/8;aspect-ratio:4/3.4}.w3{grid-column:8/13;margin-top:0;aspect-ratio:4/3.4}.w4{grid-column:1/13;aspect-ratio:16/9}
+  .proc-grid{grid-template-columns:repeat(2,1fr)}
+  .proc:nth-child(2){border-right:none}
+  .band-grid,.calc-grid{grid-template-columns:1fr;gap:40px}
+  .guarantees{border-left:none;border-top:1px solid rgba(252,252,248,.18)}
+}
+@media (max-width:760px){
+  nav.main,.hd .phone{display:none}
+  .burger{display:flex}
+  .svc-item{grid-template-columns:1fr auto;padding:22px 0}
+  .svc-num{display:none}.svc-desc{grid-column:1/3}.svc-price{grid-row:1;grid-column:2}
+  .proc-grid{grid-template-columns:1fr}.proc{border-right:none}
+  .hero-fact{flex-wrap:wrap;gap:24px}
+  .demo-ribbon{left:-64px;bottom:26px;font-size:.58rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .marquee-track{animation:none;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-ribbon">Демонстрационный проект</div>
+
+<header>
+  <div class="wrap hd">
+    <a class="brand" href="#top" aria-label="ATELIERDOM — на главную">
+      <span class="logo">ATELIER<span style="color:var(--accent)">DOM</span></span>
+    </a>
+    <nav class="main" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#works">Работы</a>
+      <a href="#process">Этапы</a>
+      <a href="#calc">Калькулятор</a>
+    </nav>
+    <a class="phone" href="tel:+74950000000">+7 495 000-00-00</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Мобильная навигация">
+    <a href="#services">Услуги</a>
+    <a href="#works">Работы</a>
+    <a href="#process">Этапы</a>
+    <a href="#calc">Калькулятор</a>
+    <a href="tel:+74950000000">+7 495 000-00-00</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <p class="mono" style="margin-bottom:22px">Ремонт квартир · Москва и МО · <b>с 2015 года</b></p>
+        <h1>Ремонт, который<br>не нужно <em>переделывать</em></h1>
+        <p class="hero-sub">Фиксированная смета в договоре, авторский надзор на каждом объекте и гарантия 3 года на все работы. Берём объект на любой стадии — от черновой отделки до расстановки мебели.</p>
+        <div class="cta-row">
+          <a class="btn solid" href="#calc"><span class="dot"></span>Рассчитать стоимость</a>
+          <a class="btn ghost" href="#works">Смотреть работы</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-fact">
+          <div><b>240+</b>объектов сдано</div>
+          <div><b>97%</b>сдаём в срок</div>
+          <div><b>3 года</b>гарантия по договору</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="mq">
+      <span>Фиксированная смета</span><span>·</span><span>Дизайн-проект в подарок</span><span>·</span><span>Оплата по этапам</span><span>·</span><span>Авторский надзор</span><span>·</span><span>Гарантия 3 года</span><span>·</span><span>Черновые материалы по опту</span><span>·</span>
+    </div>
+  </div>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Услуги и цены</h2>
+        <p class="mono">Прайс <b>2026</b></p>
+      </div>
+      <div class="svc">
+        <a class="svc-item" href="#calc" data-type="cosmetic">
+          <span class="svc-num">01</span>
+          <span class="svc-name">Косметический</span>
+          <span class="svc-desc">Обои, покраска, ламинат, обновление сантехники. Срок от 2 недель.</span>
+          <span class="svc-price">от 6 500 ₽/м²</span>
+          <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a class="svc-item" href="#calc" data-type="capital">
+          <span class="svc-num">02</span>
+          <span class="svc-name">Капитальный</span>
+          <span class="svc-desc">Замена электрики и сантехники, стяжка, перепланировка. Полный цикл.</span>
+          <span class="svc-price">от 11 900 ₽/м²</span>
+          <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a class="svc-item" href="#calc" data-type="design">
+          <span class="svc-num">03</span>
+          <span class="svc-name">Дизайнерский</span>
+          <span class="svc-desc">Проект автора, сложные узлы, комплектация и декорирование под ключ.</span>
+          <span class="svc-price">от 17 500 ₽/м²</span>
+          <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a class="svc-item" href="#calc" data-type="new">
+          <span class="svc-num">04</span>
+          <span class="svc-name">Новостройка под ключ</span>
+          <span class="svc-desc">От бетонных стен до уборки: 3–5 месяцев, вы въезжаете с чемоданом.</span>
+          <span class="svc-price">от 13 200 ₽/м²</span>
+          <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="works" style="background:var(--bg-soft)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Избранные работы</h2>
+        <p class="mono">Портфолио <b>2023—2026</b></p>
+      </div>
+      <div class="works-grid">
+        <figure class="work w1">
+          <svg class="ph ph-svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Гостиная в тёплых тонах, ЖК Символ">
+            <rect width="800" height="500" fill="#e8dfd0"/>
+            <rect x="60" y="300" width="680" height="200" fill="#d9cbb4"/>
+            <rect x="60" y="80" width="300" height="220" fill="#f2ece1"/>
+            <rect x="90" y="110" width="110" height="160" fill="#c9b894"/>
+            <rect x="220" y="110" width="110" height="160" fill="#b39f7d"/>
+            <rect x="420" y="140" width="280" height="160" rx="8" fill="#8a5a2b" opacity=".85"/>
+            <rect x="450" y="170" width="220" height="18" rx="4" fill="#fcfcf8" opacity=".5"/>
+            <rect x="450" y="200" width="160" height="18" rx="4" fill="#fcfcf8" opacity=".35"/>
+            <circle cx="680" cy="120" r="46" fill="#2a160d" opacity=".12"/>
+            <rect x="0" y="440" width="800" height="60" fill="#c4b296"/>
+          </svg>
+          <figcaption><b>ЖК «Символ», 84 м²</b><span>Капитальный · 4 мес</span></figcaption>
+        </figure>
+        <figure class="work w2">
+          <svg class="ph ph-svg" viewBox="0 0 500 568" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Кухня с островом, Хамовники">
+            <rect width="500" height="568" fill="#ddd2c0"/>
+            <rect x="0" y="380" width="500" height="188" fill="#cbb797"/>
+            <rect x="60" y="120" width="380" height="260" rx="10" fill="#f4efe6"/>
+            <rect x="90" y="150" width="140" height="200" fill="#8a5a2b" opacity=".8"/>
+            <rect x="260" y="150" width="150" height="90" fill="#2a160d" opacity=".75"/>
+            <rect x="260" y="260" width="150" height="90" fill="#b39f7d"/>
+            <circle cx="110" cy="80" r="30" fill="#2a160d" opacity=".14"/>
+          </svg>
+          <figcaption><b>Хамовники, 62 м²</b><span>Дизайнерский · 5 мес</span></figcaption>
+        </figure>
+        <figure class="work w3">
+          <svg class="ph ph-svg" viewBox="0 0 500 568" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Спальня в спокойных тонах, Сити">
+            <rect width="500" height="568" fill="#e6ddcf"/>
+            <rect x="0" y="400" width="500" height="168" fill="#d2c3a8"/>
+            <rect x="70" y="180" width="360" height="220" rx="12" fill="#f6f1e7"/>
+            <rect x="100" y="230" width="180" height="120" rx="8" fill="#9c7c4f" opacity=".7"/>
+            <rect x="300" y="230" width="100" height="170" fill="#2a160d" opacity=".7"/>
+            <circle cx="400" cy="110" r="42" fill="#8a5a2b" opacity=".25"/>
+          </svg>
+          <figcaption><b>Москва-Сити, 47 м²</b><span>Под ключ · 3,5 мес</span></figcaption>
+        </figure>
+        <figure class="work w4">
+          <svg class="ph ph-svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ванная комната с терраццо, Зиларт">
+            <rect width="800" height="500" fill="#d8cdbb"/>
+            <rect x="0" y="360" width="800" height="140" fill="#c2b193"/>
+            <rect x="80" y="100" width="260" height="260" rx="130" fill="#f2ecdf"/>
+            <rect x="420" y="140" width="300" height="220" rx="10" fill="#8a5a2b" opacity=".8"/>
+            <rect x="450" y="170" width="240" height="14" rx="7" fill="#fcfcf8" opacity=".55"/>
+            <rect x="450" y="200" width="180" height="14" rx="7" fill="#fcfcf8" opacity=".4"/>
+            <rect x="450" y="230" width="210" height="14" rx="7" fill="#fcfcf8" opacity=".3"/>
+          </svg>
+          <figcaption><b>ЖК «Зиларт», 96 м²</b><span>Капитальный · 4,5 мес</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Как мы работаем</h2>
+        <p class="mono">4 этапа <b>без сюрпризов</b></p>
+      </div>
+      <div class="proc-grid">
+        <div class="proc">
+          <span class="n">ЭТАП 01</span>
+          <h3>Замер и смета</h3>
+          <p>Инженер приезжает бесплатно, фиксируем объём работ. Смета не меняется после подписания договора.</p>
+        </div>
+        <div class="proc">
+          <span class="n">ЭТАП 02</span>
+          <h3>Дизайн-проект</h3>
+          <p>Планировка, 3D-визуализация и ведомость материалов. При заказе ремонта — в подарок.</p>
+        </div>
+        <div class="proc">
+          <span class="n">ЭТАП 03</span>
+          <h3>Ремонт</h3>
+          <p>Еженедельные фотоотчёты в мессенджер, оплата по этапам, технадзор на каждом объекте.</p>
+        </div>
+        <div class="proc">
+          <span class="n">ЭТАП 04</span>
+          <h3>Сдача и гарантия</h3>
+          <p>Клининг, акт выполненных работ и гарантия 3 года. Выезжаем на гарантийный случай за 48 часов.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap band-grid">
+      <div>
+        <h2>Смета заморожена.<br>Нервы — <em>в сохранности</em></h2>
+        <p>Цена в договоре финальная. Если что-то не учли — это наши расходы, а не ваши. Так работает 9 из 10 наших клиентов, пришедших по рекомендации.</p>
+      </div>
+      <div class="guarantees">
+        <div class="g-item"><b>0 ₽ доплат</b><span>после подписания договора</span></div>
+        <div class="g-item"><b>Штраф за срыв срока</b><span>0,1% от сметы за каждый день просрочки</span></div>
+        <div class="g-item"><b>Страхование объекта</b><span>на весь период работ</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block calc" id="calc">
+    <div class="wrap calc-grid">
+      <div>
+        <p class="mono" style="margin-bottom:16px">Калькулятор <b>предварительной сметы</b></p>
+        <h2>Сколько будет стоить ваш ремонт?</h2>
+        <p class="lead">Двигайте ползунок и выбирайте тип ремонта — покажем ориентир бюджета. Точную смету инженер составит после бесплатного замера.</p>
+        <div class="field">
+          <label for="area">Площадь квартиры <output id="areaOut">54 м²</output></label>
+          <input type="range" id="area" min="20" max="200" value="54" step="1">
+        </div>
+        <div class="field">
+          <label>Тип ремонта</label>
+          <div class="chips" id="typeChips" role="group" aria-label="Тип ремонта">
+            <button class="chip" data-rate="6500" aria-pressed="false">Косметический</button>
+            <button class="chip" data-rate="11900" aria-pressed="true">Капитальный</button>
+            <button class="chip" data-rate="17500" aria-pressed="false">Дизайнерский</button>
+            <button class="chip" data-rate="13200" aria-pressed="false">Новостройка</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Дополнительно</label>
+          <div class="chips" id="optChips" role="group" aria-label="Дополнительные опции">
+            <button class="chip" data-add="900" aria-pressed="false">Тёплый пол</button>
+            <button class="chip" data-add="1400" aria-pressed="false">Перепланировка</button>
+            <button class="chip" data-add="700" aria-pressed="false">Комплектация</button>
+          </div>
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <p class="mono">Ориентировочный бюджет</p>
+        <p class="price" id="priceOut">642 600 ₽</p>
+        <p class="per" id="perOut">11 900 ₽/м² · срок ≈ 3,5 мес</p>
+        <hr>
+        <button class="btn solid" id="openModal"><span class="dot"></span>Получить точную смету</button>
+        <p class="note">Расчёт предварительный и не является публичной офертой. Демонстрационная форма: данные никуда не отправляются.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <p class="logo">ATELIER<span style="color:var(--accent)">DOM</span></p>
+        <p class="ft-meta" style="margin-top:10px">Студия ремонта квартир<br>Москва и Московская область</p>
+      </div>
+      <div class="ft-meta">
+        +7 495 000-00-00<br>hello@atelierdom.example<br>Ежедневно 9:00—21:00
+      </div>
+    </div>
+    <p class="demo-note">Демонстрационный проект веб-студии. Название, контакты, объекты и цены вымышлены и используются только для показа дизайна и вёрстки. Форма на странице не собирает и не передаёт персональные данные.</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-card">
+    <button class="modal-x" data-close aria-label="Закрыть окно">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div id="formWrap">
+      <h3 id="modalTitle">Точная смета за 1 день</h3>
+      <p>Оставьте телефон — инженер свяжется, задаст 5 вопросов и пришлёт смету с раскладкой по работам и материалам.</p>
+      <form id="leadForm" novalidate>
+        <input type="text" name="name" placeholder="Ваше имя" autocomplete="name">
+        <input type="tel" name="phone" placeholder="+7 ___ ___-__-__" autocomplete="tel" required>
+        <button class="btn solid" type="submit" style="width:100%;justify-content:center">Жду смету</button>
+        <p class="note" style="margin-top:12px">Демо-режим: заявка не отправляется на сервер.</p>
+      </form>
+    </div>
+    <div class="form-ok" id="formOk">
+      <b>Готово!</b>
+      <p style="color:var(--ink-70)">В демо-режиме заявка никуда не уходит — на реальном сайте здесь была бы отправка в CRM.</p>
+      <button class="btn ghost" data-close style="margin-top:18px">Понятно</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  // mobile nav
+  var burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
+  burger.addEventListener('click',function(){
+    var open=mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  mnav.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');}
+  });
+  // marquee duplicate
+  var mq=document.getElementById('mq');mq.innerHTML+=mq.innerHTML;
+  // calculator
+  var area=document.getElementById('area'),areaOut=document.getElementById('areaOut'),
+      priceOut=document.getElementById('priceOut'),perOut=document.getElementById('perOut'),
+      typeChips=document.getElementById('typeChips'),optChips=document.getElementById('optChips');
+  var fmt=function(n){return n.toLocaleString('ru-RU')+' ₽'};
+  function calc(){
+    var a=+area.value,rate=0,add=0;
+    typeChips.querySelectorAll('.chip').forEach(function(c){if(c.getAttribute('aria-pressed')==='true')rate=+c.dataset.rate;});
+    optChips.querySelectorAll('.chip').forEach(function(c){if(c.getAttribute('aria-pressed')==='true')add+=+c.dataset.add;});
+    var per=rate+add,total=Math.round(a*per/100)*100;
+    areaOut.textContent=a+' м²';
+    priceOut.textContent=fmt(total);
+    var months=Math.max(1.5,Math.round((a*per/250000)*2)/2);
+    perOut.textContent=per.toLocaleString('ru-RU')+' ₽/м² · срок ≈ '+String(months).replace('.',',')+' мес';
+  }
+  typeChips.addEventListener('click',function(e){
+    var c=e.target.closest('.chip');if(!c)return;
+    typeChips.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed','false');});
+    c.setAttribute('aria-pressed','true');calc();
+  });
+  optChips.addEventListener('click',function(e){
+    var c=e.target.closest('.chip');if(!c)return;
+    c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');calc();
+  });
+  area.addEventListener('input',calc);calc();
+  // service items preselect type
+  document.querySelectorAll('.svc-item').forEach(function(item){
+    item.addEventListener('click',function(){
+      var map={cosmetic:0,capital:1,design:2,new:3};
+      var chips=typeChips.querySelectorAll('.chip');
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false');});
+      chips[map[item.dataset.type]].setAttribute('aria-pressed','true');calc();
+    });
+  });
+  // modal
+  var modal=document.getElementById('modal'),formWrap=document.getElementById('formWrap'),
+      formOk=document.getElementById('formOk'),lastFocus=null;
+  function openModal(){lastFocus=document.activeElement;modal.classList.add('open');
+    document.body.style.overflow='hidden';
+    var inp=modal.querySelector('input');if(inp)inp.focus();}
+  function closeModal(){modal.classList.remove('open');document.body.style.overflow='';
+    formWrap.style.display='';formOk.style.display='none';
+    if(lastFocus)lastFocus.focus();}
+  document.getElementById('openModal').addEventListener('click',openModal);
+  modal.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',closeModal);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+  document.getElementById('leadForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var phone=this.phone.value.replace(/\D/g,'');
+    if(phone.length<10){this.phone.style.borderColor='#b3261e';this.phone.focus();return;}
+    this.phone.style.borderColor='';
+    formWrap.style.display='none';formOk.style.display='block';
+    formOk.querySelector('button').focus();
+  });
+})();
+</script>
+</body>
+</html>
